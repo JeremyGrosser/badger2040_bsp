@@ -5,7 +5,6 @@
 --
 with HAL; use HAL;
 with Badger2040;
-with RP.Device;
 with Tiny_Text;
 
 procedure Badger_Demo is
@@ -21,12 +20,12 @@ begin
    loop
       for I in UInt8'Range loop
          Badger2040.Set_LED (I);
-         RP.Device.Timer.Delay_Milliseconds (2);
+         Delays.Delay_Milliseconds (2);
       end loop;
 
       for I in reverse UInt8'Range loop
          Badger2040.Set_LED (I);
-         RP.Device.Timer.Delay_Milliseconds (2);
+         Delays.Delay_Milliseconds (2);
       end loop;
    end loop;
 end Badger_Demo;
