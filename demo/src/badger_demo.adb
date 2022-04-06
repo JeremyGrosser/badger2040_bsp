@@ -14,7 +14,6 @@ procedure Badger_Demo is
    Text : Tiny_Text.Text_Buffer;
 begin
    Badger2040.Initialize;
-   RP.Device.Timer.Enable;
 
    Text.Initialize (INKY.Hidden_Buffer (1), INKY.Width, INKY.Height);
    Text.Clear;
