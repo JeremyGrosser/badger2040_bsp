@@ -16,6 +16,7 @@ begin
    Text.Initialize (INKY.Hidden_Buffer (1), INKY.Width, INKY.Height);
    Text.Clear;
    Text.Put ("Hello, Ada!");
+   INKY.Update;
 
    loop
       for I in UInt8'Range loop
