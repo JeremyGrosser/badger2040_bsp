@@ -19,3 +19,4 @@ tiny_text = { url='https://github.com/JeremyGrosser/tiny_text' }   # Added by al
 #[gpr-set-externals]
 #RP2040_HAL_BUILD_MODE = "debug"
 #BADGER2040_BSP_BUILD_MODE = "debug"
+#BADGER_DEMO_BUILD_MODE = "debug"
