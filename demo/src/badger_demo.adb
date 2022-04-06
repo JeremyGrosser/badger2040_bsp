@@ -5,7 +5,6 @@
 --
 with HAL; use HAL;
 with Badger2040;
-with UC8151;
 with RP.Device;
 with Tiny_Text;
 
@@ -18,9 +17,6 @@ begin
    Text.Initialize (INKY.Hidden_Buffer (1), INKY.Width, INKY.Height);
    Text.Clear;
    Text.Put ("Hello, Ada!");
-
-   --  INKY.Set_Update_Speed (UC8151.Fast);
-   INKY.Update;
 
    loop
       for I in UInt8'Range loop

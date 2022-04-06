@@ -11,7 +11,7 @@ package body Badger2040 is
       use RP.GPIO;
    begin
       RP.Clock.Initialize (XOSC_Frequency);
-      RP.Device.Timer.Enable;
+      Delays.Enable;
 
       ENABLE_3V3.Configure (Output);
       ENABLE_3V3.Set;

@@ -86,7 +86,9 @@ project Badger_Demo is
    end Binder;
 
    package Linker is
-      for Switches ("Ada") use Badger2040_BSP.Linker_Switches;
+      for Switches ("Ada") use Badger2040_BSP.Linker_Switches &
+         ("-Wl,-gc-sections",
+          "-Wl,-print-memory-usage");
    end Linker;
 
 end Badger_Demo;

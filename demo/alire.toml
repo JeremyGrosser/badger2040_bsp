@@ -16,5 +16,6 @@ tiny_text = "^1.1.0"
 badger2040_bsp = { path='../' }
 tiny_text = { url='https://github.com/JeremyGrosser/tiny_text' }   # Added by alr
 
-[gpr-set-externals]
-RP2040_HAL_BUILD_MODE = "debug"
+#[gpr-set-externals]
+#RP2040_HAL_BUILD_MODE = "debug"
+#BADGER2040_BSP_BUILD_MODE = "debug"

@@ -8,26 +8,30 @@
 --
 --  https://shop.pimoroni.com/products/badger-2040
 --  https://cdn.shopify.com/s/files/1/0174/1800/files/badger_2040_schematic.pdf
+with RP2040_SVD.UART;
+with RP2040_SVD.SPI;
+with RP2040_SVD.I2C;
 
-with RP.Device;
 with RP.I2C_Master;
+with RP.Timer;
 with RP.UART;
 with RP.GPIO;
 with RP.PWM;
 with RP.SPI;
 with RP;
-with HAL;
+
 with UC8151;
+with HAL;
 
 package Badger2040 is
    UART_TX     : aliased RP.GPIO.GPIO_Point := (Pin => 0);
    UART_RX     : aliased RP.GPIO.GPIO_Point := (Pin => 1);
-   UART        : RP.UART.UART_Port renames RP.Device.UART_0;
+   UART        : aliased RP.UART.UART_Port (0, RP2040_SVD.UART.UART0_Periph'Access);
 
    I2C_INT     : aliased RP.GPIO.GPIO_Point := (Pin => 3);
    I2C_SDA     : aliased RP.GPIO.GPIO_Point := (Pin => 4);
    I2C_SCL     : aliased RP.GPIO.GPIO_Point := (Pin => 5);
-   I2C         : RP.I2C_Master.I2C_Master_Port renames RP.Device.I2C_0;
+   I2C         : aliased RP.I2C_Master.I2C_Master_Port (0, RP2040_SVD.I2C.I2C0_Periph'Access);
 
    ENABLE_3V3  : aliased RP.GPIO.GPIO_Point := (Pin => 10);
 
@@ -45,7 +49,7 @@ package Badger2040 is
    INKY_RES    : aliased RP.GPIO.GPIO_Point := (Pin => 21);
    USER_SW     : aliased RP.GPIO.GPIO_Point := (Pin => 23);
    VBUS_DETECT : aliased RP.GPIO.GPIO_Point := (Pin => 24);
-   INKY_SPI    : RP.SPI.SPI_Port renames RP.Device.SPI_0;
+   INKY_SPI    : aliased RP.SPI.SPI_Port (0, RP2040_SVD.SPI.SPI0_Periph'Access);
 
    USER_LED     : aliased RP.GPIO.GPIO_Point := (Pin => 25);
    USER_LED_PWM : constant RP.PWM.PWM_Point := RP.PWM.To_PWM (USER_LED);
@@ -60,9 +64,11 @@ package Badger2040 is
    type Button is (A, B, C, Up, Down, User);
    Button_State : array (Button) of Boolean;
 
+   Delays : aliased RP.Timer.Delays;
+
    INKY : UC8151.Device
       (Port    => INKY_SPI'Access,
-       Delays  => RP.Device.Timer'Access,
+       Delays  => Delays'Access,
        CS      => INKY_CS'Access,
        DC      => INKY_DC'Access,
        BUSY    => INKY_BUSY'Access,
