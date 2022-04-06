@@ -7,15 +7,14 @@ maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
 maintainers-logins = ["JeremyGrosser"]
 
 executables = ["badger_demo"]
+
 [[depends-on]]
 badger2040_bsp = "~0.1.0"
+tiny_text = "^1.1.0"
 
 [[pins]]
-badger2040_bsp = { path='../../badger2040_bsp' }
+badger2040_bsp = { path='../' }
+tiny_text = { url='https://github.com/JeremyGrosser/tiny_text' }   # Added by alr
 
 [gpr-set-externals]
 RP2040_HAL_BUILD_MODE = "debug"
-[[depends-on]]  # Added by alr
-tiny_text = "^1.1.0"  # Added by alr
-[[pins]]  # Added by alr
-tiny_text = { path='../../tiny_text' }   # Added by alr
