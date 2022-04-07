@@ -3,6 +3,8 @@
 --
 --  SPDX-License-Identifier: BSD-3-Clause
 --
+with System.Machine_Code;
+
 package body UC8151 is
 
    overriding
@@ -22,7 +24,9 @@ package body UC8151 is
    is
    begin
       while This.Is_Busy loop
-         null;
+         --  A GPIO interrupt will fire on the rising edge of BUSY, so we can
+         --  just go to sleep until something happens then check again.
+         System.Machine_Code.Asm ("wfi", Volatile => True);
       end loop;
    end Busy_Wait;
 
@@ -212,6 +216,7 @@ package body UC8151 is
       (This : in out Device)
    is
    begin
+      This.BUSY.Enable_Interrupt (RP.GPIO.Rising_Edge);
       This.CS.Set;
       This.RST.Set;
       This.Setup;
@@ -404,7 +409,7 @@ package body UC8151 is
    begin
       This.Power_On (Wait => Blocking);
       This.Command (PTOU); --  Disable partial mode
-      This.Command (DTM2, To_Bytes (This.Frame_Buffer));
+      This.Command (DTM1, To_Bytes (This.Frame_Buffer));
       This.Command (DSP); --  Data stop
       This.Command (DRF); --  Start display refresh
       This.Power_Off (Wait => Blocking);
