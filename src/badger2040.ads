@@ -72,7 +72,9 @@ package Badger2040 is
        CS      => INKY_CS'Access,
        DC      => INKY_DC'Access,
        BUSY    => INKY_BUSY'Access,
-       RST     => INKY_RES'Access);
+       RST     => INKY_RES'Access,
+       Width   => 128,
+       Height  => 296);
 
    procedure Initialize;
    procedure Update_Button_State;

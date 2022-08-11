@@ -7,8 +7,11 @@ maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
 maintainers-logins = ["JeremyGrosser"]
 
 [[depends-on]]
-rp2040_hal = "^1.3"
+rp2040_hal = "^2.0.0-dev"
 adl_middleware = "~0.1.1"
 
 [configuration.values]
 rp2040_hal.Flash_Chip = "w25qxx"
+
+[[pins]]
+rp2040_hal = { url="https://github.com/JeremyGrosser/rp2040_hal.git" }

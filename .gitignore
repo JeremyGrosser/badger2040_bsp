@@ -4,3 +4,7 @@ lib/
 alire/
 config/
 *.swp
+/obj/
+/lib/
+/alire/
+/config/

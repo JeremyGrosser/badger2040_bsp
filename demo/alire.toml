@@ -1,22 +1,18 @@
-name = "badger_demo"
+name = "demo"
 description = "Shiny new project"
-version = "0.1.0"
+version = "0.1.0-dev"
 
 authors = ["Jeremy Grosser"]
 maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
 maintainers-logins = ["JeremyGrosser"]
 
-executables = ["badger_demo"]
+executables = ["demo"]
 
 [[depends-on]]
-badger2040_bsp = "~0.1.0"
-tiny_text = "^1.1.0"
+badger2040_bsp = "*"
 
 [[pins]]
-badger2040_bsp = { path='../' }
-tiny_text = { url='https://github.com/JeremyGrosser/tiny_text' }   # Added by alr
+badger2040_bsp = { path='..' }
 
-#[gpr-set-externals]
-#RP2040_HAL_BUILD_MODE = "debug"
-#BADGER2040_BSP_BUILD_MODE = "debug"
-#BADGER_DEMO_BUILD_MODE = "debug"
+[build-profiles]
+"*" = "development"

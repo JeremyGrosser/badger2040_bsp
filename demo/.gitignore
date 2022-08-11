@@ -1,4 +1,9 @@
-obj/
-lib/
-alire/
-config/
+/obj/
+/bin/
+/alire/
+/config/
+*.swp
+/obj/
+/bin/
+/alire/
+/config/
